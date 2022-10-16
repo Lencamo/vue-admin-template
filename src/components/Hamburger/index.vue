@@ -1,5 +1,9 @@
 <template>
   <div style="padding: 0 15px;" @click="toggleClick">
+    <!-- 汉堡包图标(顶部导航最左侧图标)
+      svg类似canvas, 是个矢量图表(放大不失真), 用path绘制图形坐标路径和填充颜色
+      isActive是否处于激活状态->样式是旋转
+     -->
     <svg
       :class="{'is-active':isActive}"
       class="hamburger"
@@ -17,13 +21,13 @@
 export default {
   name: 'Hamburger',
   props: {
-    isActive: {
+    isActive: { // 是否处于激活状态
       type: Boolean,
       default: false
     }
   },
   methods: {
-    toggleClick() {
+    toggleClick() { // 点击触发toggleClick事件->外面使用者写点击图标的具体逻辑
       this.$emit('toggleClick')
     }
   }

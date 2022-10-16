@@ -1,5 +1,5 @@
 
-const tokens = {
+const tokens = { // 模拟token数据
   admin: {
     token: 'admin-token'
   },
@@ -8,7 +8,7 @@ const tokens = {
   }
 }
 
-const users = {
+const users = { // 用户信息
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
@@ -29,18 +29,18 @@ module.exports = [
     url: '/vue-admin-template/user/login',
     type: 'post',
     response: config => {
-      const { username } = config.body
-      const token = tokens[username]
+      const { username } = config.body // 获取前端登录的用户名
+      const token = tokens[username] // 返回token字符
 
       // mock error
-      if (!token) {
+      if (!token) { // 如果没拿到token, 就返回账号/密码错误
         return {
           code: 60204,
           message: 'Account and password are incorrect.'
         }
       }
 
-      return {
+      return { // 正确, 返回token
         code: 20000,
         data: token
       }
@@ -70,7 +70,7 @@ module.exports = [
     }
   },
 
-  // user logout
+  // user logout => 啥也不干就返回给提示, 有意思不? 假装退出登录了其实后台啥也没干
   {
     url: '/vue-admin-template/user/logout',
     type: 'post',

@@ -1,5 +1,19 @@
 <template>
   <div class="login-container">
+    <!-- elementUI表单结构
+      el-form > el-form-item > 具体的表单标签(输入框/复选框/....)
+      做表单的校验:
+      方式1: 标签上校验(失去焦点校验)
+      el-form标签: :model="表单数据对象" :rules="规则对象"
+      el-form-item prop="对象里key名"
+      具体标签 v-model="表单数据对象.key名"
+      重要: 因为组件内要访问key名, 所以要求表单数据对象和规则对象key必须一致
+      prop和v-model的那个key名对应的
+
+      方式2: JS里兜底校验(防止用户上来直接点击按钮-想跳过标签校验)
+      el-form标签: ref="别名" 为了在js中this.$refs.别名 获取到el-form组件对象
+      点击登录事件方法内, 调用组件对象内置.validate()方法进行强制校验
+     -->
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
@@ -87,8 +101,10 @@ export default {
     }
   },
   watch: {
+    // 侦听路由对象的变化(页面跳转到这里, 就会触发下面handler函数)
     $route: {
       handler: function(route) {
+        // 看看上一个页面是否传递了redirect过来 (登陆返回未遂地址)
         this.redirect = route.query && route.query.redirect
       },
       immediate: true

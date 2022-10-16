@@ -1,5 +1,7 @@
 <template>
+  <!-- html5的section标签(章节片段), 项目对应右下角内容容器区域 -->
   <section class="app-main">
+    <!-- 二级路由出口挂载点 -->
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>
@@ -11,7 +13,7 @@ export default {
   name: 'AppMain',
   computed: {
     key() {
-      return this.$route.path
+      return this.$route.path // 用路由路径作为key才能让transition过渡效果有效
     }
   }
 }

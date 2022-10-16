@@ -1,15 +1,24 @@
 <template>
   <div class="navbar">
+    <!-- 左侧汉堡包图标
+      左侧导航开启时, 面包图标处于激活状态(看<方向)
+      绑定汉堡包点击事件, 实现切换左侧导航显示/隐藏
+     -->
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
+    <!-- 面包屑导航xxx/xxx/xxx这个 -->
     <breadcrumb class="breadcrumb-container" />
 
+    <!-- 右侧菜单 -->
     <div class="right-menu">
+      <!-- 它是elementUI的下拉菜单, trigger点击时候下拉菜单出现 -->
       <el-dropdown class="avatar-container" trigger="click">
+        <!-- 元素1, 为此下来菜单显示的标签 -->
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
+        <!-- 下拉列表 -->
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
@@ -43,16 +52,19 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'sidebar',
-      'avatar'
+      'sidebar', // 左侧导航状态对象
+      'avatar' // 头像地址
     ])
   },
   methods: {
+    // 调用vuex里切换左侧导航出现/隐藏
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
+    // 退出登录点击事件
     async logout() {
       await this.$store.dispatch('user/logout')
+      // 传递当前未遂地址
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

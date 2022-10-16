@@ -1,4 +1,5 @@
 /**
+ * 和utils里的index.js里方法一致
  * @param {string} url
  * @returns {Object}
  */

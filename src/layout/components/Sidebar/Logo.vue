@@ -1,4 +1,5 @@
 <template>
+  <!-- 如果左侧导航打开, 不要collapse, 没打开设置margin-right为0(为了让logo图片往中间点) -->
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">

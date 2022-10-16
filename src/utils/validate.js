@@ -3,10 +3,14 @@
  */
 
 /**
+ * 判断是否是外链
  * @param {string} path
- * @returns {Boolean}
+ * @returns {Boolean} true是外链, false不是外链
  */
 export function isExternal(path) {
+  // 匹配https:或者 http:
+  // 匹配mailto: (在网页中发送邮件)
+  // 匹配tel:
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 

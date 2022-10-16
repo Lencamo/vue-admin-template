@@ -1,4 +1,5 @@
 <template>
+  <!-- 决定使用a标签还是router-link -->
   <component :is="type" v-bind="linkProps(to)">
     <slot />
   </component>

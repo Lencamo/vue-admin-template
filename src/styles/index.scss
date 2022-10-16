@@ -1,3 +1,4 @@
+// 此文件引入了其他的scss, 所以在main.js我们直接引入这个主出口的scss文件就拿到了所有样式
 @import './variables.scss';
 @import './mixin.scss';
 @import './transition.scss';
